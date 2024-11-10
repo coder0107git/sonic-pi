@@ -54,7 +54,7 @@ module SonicPi
     end
 
     def to_s
-      "<SynthTracker prom:#{@prom}, synths:#{synths.inspect}>"
+      "<SynthTracker prom:#{@prom}, synths:#{@synths.inspect}>"
     end
   end
 end
