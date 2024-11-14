@@ -1263,14 +1263,16 @@ module SonicPi
     end
 
     def __move_thread_to_new_parent!(child_t, new_parent_t)
-      __remove_thread_from_parent_subthreads!(child_t)
+      __no_kill_block t do
+        __remove_thread_from_parent_subthreads!(child_t)
 
-      __system_thread_locals(new_parent_t).get(:sonic_pi_local_spider_subthread_mutex).synchronize do
-        new_parent_subthreads = __system_thread_locals(new_parent_t).get(:sonic_pi_local_spider_subthreads)
-        new_parent_subthreads.add(child_t)
+        __system_thread_locals(new_parent_t).get(:sonic_pi_local_spider_subthread_mutex).synchronize do
+          new_parent_subthreads = __system_thread_locals(new_parent_t).get(:sonic_pi_local_spider_subthreads)
+          new_parent_subthreads.add(child_t)
+        end
+
+        __system_thread_locals(child_t).set_local(:sonic_pi_local_parent_thread, new_parent_t)
       end
-
-      __system_thread_locals(child_t).set_local(:sonic_pi_local_parent_thread, new_parent_t)
     end
 
     def __remove_thread_from_parent_subthreads!(t)
