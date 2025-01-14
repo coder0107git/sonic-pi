@@ -158,7 +158,7 @@ module SonicPi
         res = @cached_folder_contents[path]
         return res if res
         # match wav, aiff, aif, wave, flac, mp3, ogg and oga files
-        pattern = '*.{[wW][aA][vV],[wW][aA][vV][eE],[aA][iI][fF],[aA][iI][fF][fF],[fF][lL][aA][cC],[mM][pP]3},[oO][gG][gGaA]'
+        pattern = '*.{[wW][aA][vV],[wW][aA][vV][eE],[aA][iI][fF],[aA][iI][fF][fF],[fF][lL][aA][cC],[mM][pP]3,[oO][gG][gGaA]}'
         if recursive
           res = Dir.chdir(path) { Dir.glob("**/#{pattern}").map { |p| File.expand_path(p) } }.sort
         else
