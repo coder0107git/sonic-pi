@@ -97,7 +97,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         id: ruby-inst
         with:
-          ruby-version: 3.2
+          ruby-version: 3.3
         if: matrix.os == 'windows-latest'
 
       # Install gems Windows
@@ -128,14 +128,14 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           modules: "qtpositioning qtwebchannel qtwebengine qtwebsockets"
-          version: "6.7.0"
+          version: "6.8.1"
 
         # Install Elixir on Ubuntu
       - name: Linux Elixir
         uses: erlef/setup-beam@v1
         with:
           otp-version: "27"
-          elixir-version: "1.17"
+          elixir-version: "1.18"
         if: matrix.os == 'ubuntu-latest'
 
         # Install Elixir on Windows
@@ -143,7 +143,7 @@ jobs:
         uses: erlef/setup-beam@v1
         with:
           otp-version: "27"
-          elixir-version: "1.17"
+          elixir-version: "1.18"
         if: matrix.os == 'windows-latest'
 
         # Install Elixir on MacOS
